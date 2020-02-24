@@ -132,7 +132,7 @@ test-go:
 	$(GO) test -v ./...
 
 test-go-lint:
-	golangci-lint run
+#	golangci-lint run
 
 test-bash:
 	bash ./test/direnv-test.bash
