@@ -8,7 +8,7 @@ import (
 
 type actionSimple func(env Env, args []string) error
 
-func (fn actionSimple) Call(env Env, args []string, config *Config) error {
+func (fn actionSimple) Call(env Env, args []string, _ *Config) error {
 	return fn(env, args)
 }
 
@@ -65,12 +65,18 @@ func init() {
 		CmdWatch,
 		CmdWatchDir,
 		CmdWatchList,
+		CmdWatchPrint,
 		CmdCurrent,
 	}
 }
 
 func cmdWithWarnTimeout(fn action) action {
 	return actionWithConfig(func(env Env, args []string, config *Config) (err error) {
+		// Disable warning if WarnTimeout is <= 0
+		if config.WarnTimeout <= 0 {
+			return fn.Call(env, args, config)
+		}
+
 		done := make(chan bool, 1)
 		go func() {
 			select {
@@ -109,11 +115,9 @@ func CommandsDispatch(env Env, args []string) error {
 			command = cmd
 			break
 		}
-		if cmd.Aliases != nil {
-			for _, alias := range cmd.Aliases {
-				if alias == commandName {
-					command = cmd
-				}
+		for _, alias := range cmd.Aliases {
+			if alias == commandName {
+				command = cmd
 			}
 		}
 	}

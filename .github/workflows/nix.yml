@@ -8,25 +8,22 @@ permissions:
 
 jobs:
   build:
-    name: Build
+    name: Nix Build
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3.0.2
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: cachix/install-nix-action@v17
-
-      - name: Build
-        run: nix-build
+      - uses: cachix/install-nix-action@v30
 
         # Run the more comprehensive test suite with nix because we have
         # access to all the build dependencies.
       - name: Test
-        run: NIX_PATH=nixpkgs=$PWD/nix nix-shell --pure --run "make test"
+        run: nix develop --ignore-environment -c make test
 
         # Test that the release generation works
       - name: Test Dist
-        run: NIX_PATH=nixpkgs=$PWD/nix nix-shell --pure --run "make dist"
+        run: nix develop --ignore-environment -c make dist
     strategy:
       matrix:
         os: [ubuntu-latest, macos-latest]
