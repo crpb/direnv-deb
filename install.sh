@@ -40,6 +40,9 @@ set -euo pipefail
     i686 | i386)
       machine=386
       ;;
+    armv7l)
+      machine=arm
+      ;;
     aarch64 | arm64)
       machine=arm64
       ;;
@@ -69,18 +72,25 @@ set -euo pipefail
   fi
   echo "bin_path=$bin_path"
 
+  if [[ -n "${version:-}" ]]; then
+    release="tags/${version}"
+  else
+    release="latest"
+  fi
+  echo "release=$release"
+
   log "looking for a download URL"
   download_url=$(
-    curl -fL https://api.github.com/repos/direnv/direnv/releases/latest \
+    curl -fL "https://api.github.com/repos/direnv/direnv/releases/$release" \
     | grep browser_download_url \
     | cut -d '"' -f 4 \
-    | grep "direnv.$kernel.$machine"
+    | grep "direnv.$kernel.$machine\$"
   )
   echo "download_url=$download_url"
 
   log "downloading"
   curl -o "$bin_path/direnv" -fL "$download_url"
-  chmod +x "$bin_path/direnv"
+  chmod a+x "$bin_path/direnv"
 
   cat <<DONE
 
