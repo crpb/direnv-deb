@@ -17,8 +17,8 @@ Build-Depends: debhelper-compat (= 13),
 	       zsh <!nocheck>
 Standards-Version: 4.6.0
 Homepage: http://direnv.net/
-Vcs-Git: https://github.com/direnv/direnv-deb.git
-Vcs-Browser: https://github.com/direnv/direnv-deb
+Vcs-Git: https://salsa.debian.org/cb/direnv.git
+Vcs-Browser: https://salsa.debian.org/cb/direnv
 Rules-Requires-Root: no
 XS-Go-Import-Path: github.com/direnv/direnv
 
