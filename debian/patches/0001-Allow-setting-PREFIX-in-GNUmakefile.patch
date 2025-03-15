@@ -7,7 +7,7 @@ Subject: Allow setting PREFIX in GNUmakefile
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/GNUmakefile b/GNUmakefile
-index 34fa6a0..7ab3516 100644
+index ffe59ae..6ee2bb0 100644
 --- a/GNUmakefile
 +++ b/GNUmakefile
 @@ -3,7 +3,7 @@

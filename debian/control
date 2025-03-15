@@ -2,19 +2,20 @@ Source: direnv
 Section: utils
 Priority: optional
 Maintainer: Punit Agrawal <punit@debian.org>
-Build-Depends: debhelper-compat (= 13),
-	       dh-golang,
-	       elvish <!nocheck>,
-	       fish <!nocheck>,
-	       golang-any,
-	       golang-github-burntsushi-toml-dev,
-	       golang-github-mattn-go-isatty-dev,
-	       golang-golang-x-mod-dev,
-	       golang-golang-x-sys-dev,
-	       ruby <!nocheck>,
-	       shellcheck <!nocheck>,
-	       tcsh <!nocheck>,
-	       zsh <!nocheck>
+Build-Depends:
+ debhelper-compat (= 13),
+ dh-golang,
+ elvish <!nocheck>,
+ fish <!nocheck>,
+ golang-any,
+ golang-github-burntsushi-toml-dev,
+ golang-github-mattn-go-isatty-dev,
+ golang-golang-x-mod-dev,
+ golang-golang-x-sys-dev,
+ ruby <!nocheck>,
+ shellcheck <!nocheck>,
+ tcsh <!nocheck>,
+ zsh <!nocheck>,
 Standards-Version: 4.6.0
 Homepage: http://direnv.net/
 Vcs-Git: https://github.com/direnv/direnv-deb.git
@@ -24,8 +25,11 @@ XS-Go-Import-Path: github.com/direnv/direnv
 
 Package: direnv
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
-Built-Using: ${misc:Built-Using}
+Depends:
+ ${misc:Depends},
+ ${shlibs:Depends},
+Built-Using:
+ ${misc:Built-Using},
 Description: Utility to set directory specific environment variables
  direnv is an environment variable manager for your shell. It knows
  how to hook into bash, zsh and fish shell to load or unload
