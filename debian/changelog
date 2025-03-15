@@ -1,3 +1,11 @@
+direnv (2.35.0-1) unstable; urgency=medium
+
+  * change vcs-urls
+  * New upstream version 2.35.0
+  * gbp-pq-import-export
+
+ -- Christopher Bock <christopher@bocki.com>  Sat, 15 Mar 2025 19:28:59 +0100
+
 direnv (2.32.1-2) unstable; urgency=medium
 
   * debian: manpages: Include direnv.toml.1 (Closes: #1022208)
